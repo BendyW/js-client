@@ -1,0 +1,28 @@
+<h1>{{title}}</h1>
+<section>
+    <p>Your users are:</p>
+    <article id="users-list">
+
+    </article>
+</section>
+
+<script>
+    var ajaxObj = {
+        url: 'https://js-server-bendyw.herokuapp.com/users/',
+        type: 'get',
+        dataType: 'json',
+        success: function (data) {
+            for(prop in data){
+                console.log(prop,data[prop]);
+                $('#users-list').append('<li>'+data[prop].email + ': '+ data[prop].password + "<br/>");
+            }
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    };
+
+    $(document).ready(function (event) {
+       $.ajax(ajaxObj);
+    });
+</script>
